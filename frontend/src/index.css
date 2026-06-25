@@ -1,0 +1,246 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+  color: #172033;
+  background: #f5f8fc;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(16, 185, 129, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #f8fbff 0%, #f4f7fb 42%, #eef4f8 100%);
+  color: #172033;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    @apply m-0;
+  }
+}
+
+/* Classes de componente reaproveitadas em todas as páginas — mesmo padrão das
+   aulas (camada @layer components com @apply de utilitários do Tailwind). */
+@layer components {
+  .app-shell {
+    @apply min-h-screen text-slate-900;
+  }
+
+  .app-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .app-topbar {
+    @apply sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl;
+  }
+
+  .app-page {
+    @apply py-6 sm:py-8 lg:py-10;
+  }
+
+  .app-page-form {
+    @apply mx-auto w-full max-w-3xl space-y-6;
+  }
+
+  .app-auth-shell {
+    @apply flex min-h-screen items-center justify-center px-4 py-8 sm:px-6 lg:px-8;
+  }
+
+  .app-auth-grid {
+    @apply grid w-full max-w-6xl overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_30px_80px_-40px_rgba(15,23,42,0.35)] lg:grid-cols-[1.05fr_0.95fr];
+  }
+
+  .app-auth-panel {
+    @apply relative hidden overflow-hidden bg-slate-950 px-8 py-10 text-white lg:flex lg:flex-col lg:justify-between xl:px-12;
+  }
+
+  .app-auth-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(52, 211, 153, 0.22),
+        transparent 32%
+      ),
+      radial-gradient(
+        circle at bottom right,
+        rgba(16, 185, 129, 0.3),
+        transparent 34%
+      );
+    pointer-events: none;
+  }
+
+  .app-auth-content {
+    @apply relative z-10 flex flex-col gap-8;
+  }
+
+  .app-auth-card {
+    @apply flex items-center bg-white px-5 py-6 sm:px-8 sm:py-10;
+  }
+
+  .app-auth-form {
+    @apply mx-auto flex w-full max-w-md flex-col gap-6;
+  }
+
+  .app-surface {
+    @apply rounded-3xl border border-slate-200 bg-white shadow-[0_24px_60px_-36px_rgba(15,23,42,0.4)];
+  }
+
+  .app-panel-body {
+    @apply p-5 sm:p-6;
+  }
+
+  .app-page-header {
+    @apply flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between;
+  }
+
+  .app-title {
+    @apply text-2xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-3xl;
+  }
+
+  .app-subtitle {
+    @apply mt-2 max-w-2xl text-sm leading-6 text-slate-600 sm:text-[15px];
+  }
+
+  .app-eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700;
+  }
+
+  .app-form-grid {
+    @apply grid gap-5;
+  }
+
+  .app-label {
+    @apply mb-2 block text-sm font-medium text-slate-700;
+  }
+
+  .app-input,
+  .app-select,
+  .app-textarea {
+    @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-[0_1px_2px_rgba(15,23,42,0.04)] outline-none transition duration-200 placeholder:text-slate-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100;
+  }
+
+  .app-textarea {
+    @apply min-h-28 resize-y;
+  }
+
+  .app-button-primary {
+    @apply inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-[0_18px_30px_-18px_rgba(5,150,105,0.75)] transition duration-200 hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-200 disabled:cursor-not-allowed disabled:bg-emerald-300;
+  }
+
+  .app-button-secondary {
+    @apply inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition duration-200 hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-100;
+  }
+
+  .app-button-danger {
+    @apply inline-flex items-center justify-center rounded-xl border border-rose-200 bg-white px-3 py-2 text-sm font-semibold text-rose-600 transition duration-200 hover:bg-rose-50 focus:outline-none focus:ring-4 focus:ring-rose-100;
+  }
+
+  .app-link {
+    @apply font-medium text-emerald-700 transition hover:text-emerald-800;
+  }
+
+  .app-alert {
+    @apply rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700;
+  }
+
+  .app-notice {
+    @apply rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700;
+  }
+
+  .app-empty {
+    @apply rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-6 py-10 text-center text-sm text-slate-500;
+  }
+
+  .app-table-scroll {
+    @apply overflow-x-auto;
+  }
+
+  .app-table {
+    @apply min-w-full divide-y divide-slate-200 text-left;
+  }
+
+  .app-table thead {
+    @apply bg-slate-50;
+  }
+
+  .app-table th {
+    @apply px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500;
+  }
+
+  .app-table td {
+    @apply px-5 py-4 align-middle text-sm text-slate-700;
+  }
+
+  .app-table tbody tr {
+    @apply border-t border-slate-100 transition hover:bg-emerald-50/50;
+  }
+
+  .app-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset;
+  }
+
+  .app-list {
+    @apply divide-y divide-slate-100;
+  }
+
+  .app-list-item {
+    @apply flex flex-col gap-3 py-4 sm:flex-row sm:items-start sm:justify-between;
+  }
+
+  .app-card-grid {
+    @apply grid gap-5 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .app-card {
+    @apply flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_50px_-36px_rgba(15,23,42,0.4)] transition hover:-translate-y-0.5 hover:shadow-[0_28px_60px_-36px_rgba(15,23,42,0.5)];
+  }
+
+  .app-card-image {
+    @apply h-44 w-full bg-slate-100 object-cover;
+  }
+}
