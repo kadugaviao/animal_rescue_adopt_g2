@@ -1,7 +1,7 @@
 {
   "name": "rescue-adopt-backend",
   "version": "1.0.0",
-  "description": "Boilerplate reutilizavel: Express + TypeScript + Prisma + PostgreSQL (Neon)",
+  "description": "API do Sistema de Resgate e Adocao de Animais (Express + TypeScript + Prisma + PostgreSQL/Neon)",
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
@@ -15,8 +15,7 @@
     "express",
     "typescript",
     "prisma",
-    "postgresql",
-    "boilerplate"
+    "postgresql"
   ],
   "license": "MIT",
   "dependencies": {

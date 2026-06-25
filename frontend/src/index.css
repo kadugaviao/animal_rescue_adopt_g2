@@ -61,8 +61,7 @@ textarea {
   }
 }
 
-/* Classes de componente reaproveitadas em todas as páginas — mesmo padrão das
-   aulas (camada @layer components com @apply de utilitários do Tailwind). */
+/* Classes de componente reaproveitadas nas páginas (@layer components + @apply). */
 @layer components {
   .app-shell {
     @apply min-h-screen text-slate-900;

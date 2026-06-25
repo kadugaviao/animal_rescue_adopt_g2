@@ -1,5 +1,4 @@
-// Esqueleto do schema. Adicione AQUI cada nova entidade do dominio do projeto.
-// Mantenha generator + datasource sempre; o model User e o enum Role sao exemplos.
+// Schema do dominio: User, Animal, AdoptionRequest e RescueReport + seus enums.
 
 generator client {
   provider = "prisma-client-js"
