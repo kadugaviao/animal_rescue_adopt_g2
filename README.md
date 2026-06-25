@@ -79,6 +79,29 @@ npm run dev
 
 Acesse: [http://localhost:5173](http://localhost:5173)
 
+## Rotas da API
+
+| Método | Rota | Acesso |
+|--------|------|--------|
+| POST | `/auth/register` | público |
+| POST | `/auth/login` | público |
+| GET | `/auth/me` | logado |
+| GET | `/animals` (`?species=&size=&status=`) | público |
+| GET | `/animals/:id` | público |
+| POST | `/animals` | admin |
+| PUT | `/animals/:id` | admin |
+| DELETE | `/animals/:id` | admin |
+| POST | `/adoptions` | logado |
+| GET | `/adoptions/me` | logado |
+| GET | `/adoptions` | admin |
+| PATCH | `/adoptions/:id/status` | admin |
+| POST | `/rescue-reports` | logado |
+| GET | `/rescue-reports/me` | logado |
+| GET | `/rescue-reports` | admin |
+| PATCH | `/rescue-reports/:id/status` | admin |
+
+Rotas protegidas exigem o header `Authorization: Bearer <token>`.
+
 ## Primeiro acesso
 
 O sistema não vem com usuário admin criado, e o cadastro público sempre cria usuários comuns (`role: "USER"`) por segurança. Para criar o primeiro admin, promova um usuário direto no banco:
