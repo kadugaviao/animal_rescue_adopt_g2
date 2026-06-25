@@ -1,0 +1,104 @@
+// Esqueleto do schema. Adicione AQUI cada nova entidade do dominio do projeto.
+// Mantenha generator + datasource sempre; o model User e o enum Role sao exemplos.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum AnimalStatus {
+  AVAILABLE
+  ADOPTED
+  IN_TREATMENT
+}
+
+enum AnimalSize {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum AdoptionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum RescueStatus {
+  OPEN
+  RESCUED
+  CANCELED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  adoptionRequests AdoptionRequest[]
+  rescueReports    RescueReport[]
+
+  @@map("users")
+}
+
+model Animal {
+  id          String       @id @default(uuid())
+  name        String
+  species     String
+  breed       String?
+  age         Int?
+  size        AnimalSize
+  description String?
+  imageUrl    String?      @map("image_url")
+  status      AnimalStatus @default(AVAILABLE)
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  adoptionRequests AdoptionRequest[]
+
+  @@map("animals")
+}
+
+model AdoptionRequest {
+  id        String         @id @default(uuid())
+  status    AdoptionStatus @default(PENDING)
+  message   String
+  createdAt DateTime       @default(now()) @map("created_at")
+  updatedAt DateTime       @updatedAt @map("updated_at")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  animalId String @map("animal_id")
+  animal   Animal @relation(fields: [animalId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, animalId])
+  @@map("adoption_requests")
+}
+
+model RescueReport {
+  id          String       @id @default(uuid())
+  description String
+  location    String
+  status      RescueStatus @default(OPEN)
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("rescue_reports")
+}
